@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="CTO">
+    <Package name="Main">
+        <Key ID="STR_CTO_Main_OverrideMessage">
+            <English>!TURRET OVERRIDE!</English>
+        </Key>
+        <Key ID="STR_CTO_Main_CommanderTurretOverride">
+            <English>Commander Turret Override</English>
+        </Key>
+        <Key ID="STR_CTO_Main_CommanderTurretOverrideKey_Display">
+            <English>Turret override</English>
+        </Key>
+    </Package>
+</Project>

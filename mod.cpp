@@ -1,0 +1,13 @@
+name = "Commander Turret Override";
+dir = "@Commaner_Turret_Override";
+author = "Seb";
+actionName = "Website";
+action = "http://www.carpenoctem.co";
+description = "Github: https://github.com/Seb105/Arma-Helicopter-Turbulence";
+tooltip = "Commander Turret Override";
+tooltipOwned = "Commander Turret Override";
+overview = "Allows a vehicle commander to override the gunner turret to look a certain direction";
+overviewText = "Helicopter Turbulence Overview";
+logoSmall	 = "logoSmall.paa";	    // Display next to the item added by the mod
+logo		 = "logo.paa";			// Logo displayed in the main menu
+logoOver	 = "logoSmall.paa";	
