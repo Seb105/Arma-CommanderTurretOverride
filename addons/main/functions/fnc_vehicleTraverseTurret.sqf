@@ -12,8 +12,8 @@ if (_hasGunner && !_currentUnitIsGunner) exitWith { _currentGunner lookAt _targe
 private _turretCfg = configFile >> "CfgVehicles" >> typeOf _vehicle >> "Turrets" >> "MainTurret";
 private _horRotSpeed = [_turretCfg,"maxHorizontalRotSpeed", nil] call BIS_fnc_returnConfigEntry;
 private _turretAngularSpeed = 45 * (_horRotSpeed call BIS_fnc_parseNumber);     // degrees/sec
-_traverseDist = abs ([_vehicle, _target] call TCO_fnc_getMainTurretAngleTo);    // Direction to target 0-180
-private _traverseTime = 3 max (_traverseDist / _turretAngularSpeed) * 2;        // * 2 for breathing room, should exit earlier than this.
+_traverseDist = abs ([_vehicle, _target] call FUNC(getMainTurretAngleTo));    // Direction to target 0-180
+private _traverseTime = 2 max (_traverseDist / _turretAngularSpeed) * 2;        // * 2 for breathing room, should exit earlier than this.
 
 private _dummy = createAgent ["B_RangeMaster_F", [-1000, -1000], [], 0, "NONE"];
 [_dummy, true] remoteExec ["hideObjectGlobal", 2];

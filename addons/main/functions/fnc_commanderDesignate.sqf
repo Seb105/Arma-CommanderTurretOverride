@@ -3,7 +3,7 @@
 _currentUnit = call CBA_fnc_currentUnit;
 private _vehicle = vehicle _currentUnit;
 
-// Ensure current vehicle supports 
+// Ensure current vehicle supports override
 if (_vehicle isEqualTo _currentUnit) exitWith {};
 if !(_currentUnit isEqualTo commander _vehicle) exitWith {};
 if !(_vehicle call FUNC(vehicleHasTurretOverride)) exitWith {};
