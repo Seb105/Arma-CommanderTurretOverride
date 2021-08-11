@@ -5,7 +5,6 @@ _gunner lookAt _target;
 [{
     params ["_vehicle", "_target", "_gunner", "_cameraView", "_currentUnit", "_currentUnitIsGunner", "_traverseTime", "_dummy"];
     _traverseDist = abs ([_vehicle, _target] call FUNC(getMainTurretAngleTo));
-    if (time%2 > 1) then {_gunner lookAt _target};
     if (_traverseDist < 1) then {
         _gunner setVariable [
             QGVAR(timeOnTarget),

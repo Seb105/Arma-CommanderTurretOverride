@@ -3,16 +3,33 @@
 params ["_vehicle", "_target"];
 
 private _currentUnit = call CBA_fnc_currentUnit;
+private _isRemoteControlled = player != _currentUnit && !isNull player;
 private _currentGunner = gunner _vehicle;
 if (_currentGunner getVariable [QGVAR(overrideInProgress), false]) exitWith {};
 private _hasGunner = !(isNull _currentGunner);
-_currentUnitIsGunner = (_currentGunner == _currentUnit);
-if (_hasGunner && !_currentUnitIsGunner) exitWith { _currentGunner lookAt _target }; // AI is gunner.
+private _currentUnitIsGunner = _currentGunner == _currentUnit;
+if (_hasGunner && !_currentUnitIsGunner) exitWith {_currentGunner lookAt _target }; // AI is gunner.
+if (_currentUnitIsGunner && _isRemoteControlled) exitWith {
+    /* 
+     * remoteControl is prone to game breaking errors, in mutliplayer so if the client 
+     * is currently remote controlling the gunner, then do nothing and print an error message.
+     */
+    cutText [
+        format [
+            "<t color='#ff0000' font='PuristaBold' size='2'>%1</t>",
+            LLSTRING(RemoteControlFailMessage)
+        ],
+        "PLAIN DOWN", 
+        0.5, 
+        false, 
+        true
+    ];
+};
 
 private _turretCfg = configFile >> "CfgVehicles" >> typeOf _vehicle >> "Turrets" >> "MainTurret";
 private _horRotSpeed = [_turretCfg,"maxHorizontalRotSpeed", nil] call BIS_fnc_returnConfigEntry;
 private _turretAngularSpeed = 45 * (_horRotSpeed call BIS_fnc_parseNumber);     // degrees/sec
-_traverseDist = abs ([_vehicle, _target] call FUNC(getMainTurretAngleTo));    // Direction to target 0-180
+private _traverseDist = abs ([_vehicle, _target] call FUNC(getMainTurretAngleTo));    // Direction to target 0-180
 private _traverseTime = 2 max (_traverseDist / _turretAngularSpeed) * 2;        // * 2 for breathing room, should exit earlier than this.
 
 private _dummy = createAgent ["B_RangeMaster_F", [-1000, -1000], [], 0, "NONE"];
@@ -30,14 +47,8 @@ private _gunner = if (_currentUnitIsGunner) then {
         false, 
         true
     ];
-    _currentUnit setVariable [QGVAR(isRemoteControlled), player != _currentUnit];
-    if (_currentUnit getVariable QGVAR(isRemoteControlled)) then {
-        objNull remoteControl _currentUnit;
-    } else {
-        selectPlayer _dummy;
-        _currentUnit switchCamera _cameraView;
-    };
-    
+    selectPlayer _dummy;
+    _currentUnit switchCamera _cameraView;
     _currentUnit
 } else {
     _dummy moveInGunner _vehicle;

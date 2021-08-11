@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project name="CTO">
     <Package name="Main">
-        <Key ID="STR_CTO_Main_OverrideMessage">
+        <Key ID="STR_CTO_main_OverrideMessage">
             <English>!TURRET OVERRIDE!</English>
         </Key>
-        <Key ID="STR_CTO_Main_CommanderTurretOverride">
+        <Key ID="STR_CTO_main_RemoteControlFailMessage">
+            <English>Commander override failed: Cannot override remote controlled unit.</English>
+        </Key>
+        <Key ID="STR_CTO_main_CommanderTurretOverride">
             <English>Commander Turret Override</English>
         </Key>
-        <Key ID="STR_CTO_Main_CommanderTurretOverrideKey_Display">
+        <Key ID="STR_CTO_main_CommanderTurretOverrideKey_Display">
             <English>Turret override</English>
         </Key>
     </Package>
