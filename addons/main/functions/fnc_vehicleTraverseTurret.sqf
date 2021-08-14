@@ -1,5 +1,22 @@
 #include "script_component.hpp"
 
+/*
+ * Author: Seb
+ * Force a vehicle to traverse its turret to the given target
+ *
+ * Arguments:
+ * 0: Vehicle to traverse turret <OBJECT>
+ * 1: Target <OBJECT, POSITION AGL>
+ *
+ * Return Value:
+ * Nothing
+ *
+ * Example:
+ * [vehicle player, [3000, 3000 ,0]] call CTO_main_fnc_vehicleTraverseTurret
+ *
+ * Public: Yes
+ */
+
 params ["_vehicle", "_target"];
 
 private _currentUnit = call CBA_fnc_currentUnit;

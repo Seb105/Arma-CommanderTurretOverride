@@ -1,5 +1,28 @@
 #include "script_component.hpp"
 
+/*
+ * Author: Seb
+ * Makes the current gunner look at the given target. Call exit function when target is reached.
+ *
+ * Arguments:
+ * 0: Vehicle doing the traversal <OBJECT>
+ * 1: Target to traverse to <OBJECT, posAGL>
+ * 2: Gunner: this may be a dummy or a player <OBJECT>
+ * 3: CameraView the cameraview of the client when the turret started traversing <STRING>
+ * 4: The current unit the client is controlling <OBJECT>
+ * 5: Is the current unit the gunner of this vehicle? <BOOL>
+ * 6: The maximum amount of time it should take for the turret to reach its target <NUMBER>
+ * 7: Dummy unit created to either store the player, or move into the vehicle and traverse the turret <OBJECT>
+ *
+ * Return Value:
+ * Nothing
+ *
+ * Example:
+ * _this call CTO_main_fnc_dummyDoWatch
+ *
+ * Public: No
+ */
+
 params ["_vehicle", "_target", "_gunner", "_cameraView", "_currentUnit", "_currentUnitIsGunner", "_traverseTime", "_dummy"];
 _gunner lookAt _target;
 [{

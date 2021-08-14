@@ -1,5 +1,22 @@
 #include "script_component.hpp"
 
+/*
+ * Author: Seb
+ * Commands the turret to traverse to wherever the clients' current unit is looking, as long as
+ * the vehicle supports this.
+ *
+ * Arguments:
+ * None
+ *
+ * Return Value:
+ * Nothing
+ *
+ * Example:
+ * [vehicle player, [3000, 3000 ,0]] call CTO_main_fnc_commanderDesignate
+ *
+ * Public: No
+ */
+
 _currentUnit = call CBA_fnc_currentUnit;
 private _vehicle = vehicle _currentUnit;
 
