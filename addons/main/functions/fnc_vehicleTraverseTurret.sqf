@@ -74,16 +74,28 @@ private _gunner = if (_currentUnitIsGunner) then {
 
 _gunner setVariable [QGVAR(overrideInProgress), true, true];
 
-[{
-    params ["_vehicle", "_target", "_gunner", "_cameraView", "_currentUnit", "_currentUnitIsGunner", "_traverseTime", "_dummy"];
-    _gunner in _vehicle
-}, {
-    _this call FUNC(dummyDoWatch);
-},
-[_vehicle, _target, _gunner, _cameraView, _currentUnit, _currentUnitIsGunner, _traverseTime, _dummy],
-3,
-{
-    // Cleanup if some problem occured
-    _this call FUNC(gunnerTargetReached);
-}] call CBA_fnc_waitUntilAndExecute;
+// Setup a timeout for putting the player control back where it should be.
+[
+    {
+        _this call FUNC(gunnerTargetReached);
+    },
+    [_vehicle, _target, _gunner, _cameraView, _currentUnit, _currentUnitIsGunner, _traverseTime, _dummy],
+    _traverseTime
+] call CBA_fnc_waitAndExecute;
+
+// Command turret traversal
+[
+    {
+        params ["_vehicle", "_target", "_gunner", "_cameraView", "_currentUnit", "_currentUnitIsGunner", "_traverseTime", "_dummy"];
+        _gunner in _vehicle
+    }, {
+        _this call FUNC(dummyDoWatch);
+    },
+    [_vehicle, _target, _gunner, _cameraView, _currentUnit, _currentUnitIsGunner, _traverseTime, _dummy],
+    3,
+    {
+        // Cleanup if some problem occured
+        _this call FUNC(gunnerTargetReached);
+    }
+] call CBA_fnc_waitUntilAndExecute;
 
