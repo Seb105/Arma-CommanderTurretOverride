@@ -12,7 +12,7 @@
  * Can this vehicle do Commander Turret Override? <BOOL>
  *
  * Example:
- * [vehicle player, [3000, 3000 ,0]] call CTO_main_fnc_vehicleHasTurretOverride
+ * [vehicle player] call CTO_main_fnc_vehicleHasTurretOverride
  *
  * Public: No
  */

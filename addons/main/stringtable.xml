@@ -13,5 +13,11 @@
         <Key ID="STR_CTO_main_CommanderTurretOverrideKey_Display">
             <English>Turret override</English>
         </Key>
+        <Key ID="STR_CTO_main_LockTurretControl">
+            <English>Lock turret control</English>
+        </Key>
+        <Key ID="STR_CTO_main_UnlockTurretControl">
+            <English>Unlock turret control</English>
+        </Key>
     </Package>
 </Project>

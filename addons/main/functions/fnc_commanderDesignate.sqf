@@ -23,6 +23,7 @@ private _vehicle = vehicle _currentUnit;
 // Ensure current vehicle supports override
 if (_vehicle isEqualTo _currentUnit) exitWith {};
 if (_currentUnit isNotEqualTo commander _vehicle || isTurnedOut _currentUnit) exitWith {};
+if (_vehicle getVariable [QGVAR(turretControlLocked), false]) exitWith {};
 if !(_vehicle call FUNC(vehicleHasTurretOverride)) exitWith {};
 
 private _camPos = eyePos _currentUnit;
