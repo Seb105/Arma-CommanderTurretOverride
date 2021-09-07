@@ -5,3 +5,4 @@ PREP(getMainTurretDir);
 PREP(gunnerTargetReached);
 PREP(vehicleHasTurretOverride);
 PREP(vehicleTraverseTurret);
+PREP(addActions);
