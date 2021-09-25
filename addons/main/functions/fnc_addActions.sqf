@@ -25,7 +25,7 @@ _vehicle addAction [
     },
     nil,		// arguments
     1.5,		// priority
-    true,		// showWindow
+    false,		// showWindow
     true,		// hideOnUse
     "",			// shortcut
     "_this == gunner _originalTarget && !(_originalTarget getVariable ['CTO_main_turretControlLocked', false])", 	// condition
@@ -43,7 +43,7 @@ _vehicle addAction [
     },
     nil,		// arguments
     1.5,		// priority
-    true,		// showWindow
+    false,		// showWindow
     true,		// hideOnUse
     "",			// shortcut
     "_this == gunner _originalTarget && (_originalTarget getVariable ['CTO_main_turretControlLocked', false])", 	// condition

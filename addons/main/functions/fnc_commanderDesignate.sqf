@@ -20,6 +20,10 @@
 _currentUnit = call CBA_fnc_currentUnit;
 private _vehicle = vehicle _currentUnit;
 
+// Cooldown, can only call once every 2 seconds.
+if (time - (missionNameSpace getVariable [QGVAR(lastCTO),0]) < 2) exitWith {};
+GVAR(lastCTO) = time;
+
 // Ensure current vehicle supports override
 if (_vehicle isEqualTo _currentUnit) exitWith {};
 if (_currentUnit isNotEqualTo commander _vehicle || isTurnedOut _currentUnit) exitWith {};

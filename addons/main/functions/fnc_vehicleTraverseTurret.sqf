@@ -50,6 +50,8 @@ private _traverseDist = abs ([_vehicle, _target] call FUNC(getMainTurretAngleTo)
 private _traverseTime = 2 max ((_traverseDist / _turretAngularSpeed) * 2);          // * 2 for breathing room, should exit earlier than this.
 
 private _dummy = createAgent ["B_RangeMaster_F", [-1000, -1000], [], 0, "NONE"];
+_dummy disableAI "all";
+_dummy enableAI "WEAPONAIM";
 [_dummy, true] remoteExec ["hideObjectGlobal", 2];
 _dummy allowDamage false;
 private _cameraView = cameraView;
@@ -79,7 +81,7 @@ _gunner setVariable [QGVAR(overrideInProgress), true, true];
     {
         _this call FUNC(gunnerTargetReached);
     },
-    [_vehicle, _target, _gunner, _cameraView, _currentUnit, _currentUnitIsGunner, _traverseTime, _dummy],
+    [_currentUnit, _gunner, _dummy, _currentUnitIsGunner, _cameraView],
     _traverseTime
 ] call CBA_fnc_waitAndExecute;
 
@@ -88,14 +90,16 @@ _gunner setVariable [QGVAR(overrideInProgress), true, true];
     {
         params ["_vehicle", "_target", "_gunner", "_cameraView", "_currentUnit", "_currentUnitIsGunner", "_traverseTime", "_dummy"];
         _gunner in _vehicle
-    }, {
+    }, 
+    {
         _this call FUNC(dummyDoWatch);
     },
     [_vehicle, _target, _gunner, _cameraView, _currentUnit, _currentUnitIsGunner, _traverseTime, _dummy],
     3,
     {
         // Cleanup if some problem occured
-        _this call FUNC(gunnerTargetReached);
+        params ["_vehicle", "_target", "_gunner", "_cameraView", "_currentUnit", "_currentUnitIsGunner", "_traverseTime", "_dummy"];
+        [_currentUnit, _gunner, _dummy, _currentUnitIsGunner, _cameraView] call FUNC(gunnerTargetReached);
     }
 ] call CBA_fnc_waitUntilAndExecute;
 

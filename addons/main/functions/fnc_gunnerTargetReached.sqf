@@ -23,7 +23,7 @@
  * Public: No
  */
 
-params ["_vehicle", "_target", "_gunner", "_cameraView", "_currentUnit", "_currentUnitIsGunner", "_traverseTime", "_dummy"];
+params ["_currentUnit", "_gunner", "_dummy", "_currentUnitIsGunner", "_cameraView"];
 if (_currentUnitIsGunner) then {
     selectPlayer _currentUnit;
     QGVAR(overrideCutText) cutFadeOut 0.25;

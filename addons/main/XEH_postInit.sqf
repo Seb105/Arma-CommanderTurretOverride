@@ -3,7 +3,7 @@
 
 if !(hasInterface) exitWith {};
 
-["LandVehicle", "init", {
+["LandVehicle", "initPost", {
     private _vehicle = (_this select 0);
     private _hasCommander = false;
     private _hasGunner = false;
