@@ -2,7 +2,6 @@
 #include "\a3\ui_f\hpp\defineDIKCodes.inc"
 
 if !(hasInterface) exitWith {};
-
 ["LandVehicle", "initPost", {
     private _vehicle = (_this select 0);
     private _hasCommander = false;
@@ -15,8 +14,7 @@ if !(hasInterface) exitWith {};
             default {};
         };
     } forEach (fullCrew [_vehicle, "", true]);
-
-    if (_hasGunner && _hasCommander) then {
+    if (_hasGunner && _hasCommander && (_vehicle call FUNC(vehicleHasTurretOverride))) then {
         _vehicle call FUNC(addActions);
     };
 }, true, [], true] call CBA_fnc_addClassEventHandler;
@@ -26,7 +24,7 @@ if !(hasInterface) exitWith {};
     QGVAR(commanderDesignateKey),
     LLSTRING(CommanderTurretOverrideKey_Display),
     {
-        0 = call FUNC(commanderDesignate);
+        call FUNC(commanderDesignate);
     },
     "",
     [DIK_T, [false, false, true]]
